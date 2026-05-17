@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE / editor settings
+.idea/
+.vscode/
+
+# Local tooling caches (Playwright MCP, etc.)
+.playwright-mcp/

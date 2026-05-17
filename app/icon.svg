@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="10" fill="#BC5A38"/>
+  <text
+    x="32"
+    y="46"
+    text-anchor="middle"
+    font-family="'Instrument Serif','Cormorant Garamond',Georgia,'Times New Roman',serif"
+    font-style="italic"
+    font-size="44"
+    fill="#F7F1E8"
+  >S.</text>
+</svg>
