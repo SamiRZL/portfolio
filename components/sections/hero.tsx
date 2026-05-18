@@ -67,7 +67,7 @@ export function Hero() {
                 Portrait
               </span>
               <span className="font-display text-sm italic text-muted-foreground">
-                Bouismail, 2026
+                Algiers, 2025
               </span>
             </div>
           </div>
