@@ -1,11 +1,8 @@
-import { Mail, ArrowUpRight, MapPin } from "lucide-react";
+import { Mail, Phone, ArrowUpRight, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ContactForm } from "@/components/sections/contact-form";
-import {
-  GithubMark,
-  LinkedinMark,
-  WhatsappMark,
-} from "@/components/brand-icons";
+import { CopyContactRow } from "@/components/sections/copy-contact-row";
+import { GithubMark, LinkedinMark } from "@/components/brand-icons";
 import { IDENTITY } from "@/lib/portfolio-data";
 import type { ComponentType, SVGProps } from "react";
 
@@ -15,8 +12,6 @@ const SOCIAL_ICON: Record<
 > = {
   github: (p) => <GithubMark {...p} />,
   linkedin: (p) => <LinkedinMark {...p} />,
-  email: (p) => <Mail {...p} />,
-  whatsapp: (p) => <WhatsappMark {...p} />,
 };
 
 export function Contact() {
@@ -44,12 +39,36 @@ export function Contact() {
             {/* Direct links */}
             <ul className="flex flex-col divide-y divide-border/70 overflow-hidden rounded-2xl border border-border/70 bg-card/50">
               {IDENTITY.socials.map((s) => {
+                // Phone & email are click-to-copy rows, not navigation links.
+                if (s.kind === "phone") {
+                  return (
+                    <li key={s.kind}>
+                      <CopyContactRow
+                        icon={<Phone className="size-4" />}
+                        label="Phone"
+                        display={s.label}
+                      />
+                    </li>
+                  );
+                }
+                if (s.kind === "email") {
+                  return (
+                    <li key={s.kind}>
+                      <CopyContactRow
+                        icon={<Mail className="size-4" />}
+                        label="Email"
+                        display={s.label}
+                      />
+                    </li>
+                  );
+                }
+
                 const Icon = SOCIAL_ICON[s.kind];
                 return (
                   <li key={s.kind}>
                     <a
                       href={s.href}
-                      target={s.kind === "email" ? undefined : "_blank"}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="group flex items-center gap-4 px-5 py-4 text-foreground transition-colors hover:bg-foreground/[0.03]"
                     >
@@ -106,10 +125,6 @@ function labelFor(kind: string): string {
       return "GitHub";
     case "linkedin":
       return "LinkedIn";
-    case "email":
-      return "Email";
-    case "whatsapp":
-      return "WhatsApp";
     default:
       return kind;
   }

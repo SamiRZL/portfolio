@@ -3,7 +3,7 @@
  * Edit the constants below to update the site — all types are strict.
  */
 
-export type SocialKind = "github" | "linkedin" | "email" | "whatsapp";
+export type SocialKind = "github" | "linkedin" | "email" | "phone";
 
 export interface Identity {
   readonly name: string;
@@ -85,7 +85,7 @@ export const IDENTITY: Identity = {
     "Data analyst with a builder's instinct — turning raw data into decisions, dashboards, and direction.",
   summary:
     "Data Analyst with a software engineering background and hands-on project experience in data collection, processing, analysis, and visualization using SQL, Python, Power BI, Tableau, and Excel. Skilled in data cleaning, modeling, dashboard development, and statistical analysis across relational and non-relational databases. Holds a Master's in Computer Science (NLP), comfortable delivering data solutions in Agile, cross-functional teams.",
-  location: "Bouismail, Tipaza — Algeria",
+  location: "Algiers — Algeria",
   email: "rezalsamipro@gmail.com",
   phone: "+213 549 845 201",
   availability: "Open to new analyst roles",
@@ -108,9 +108,9 @@ export const IDENTITY: Identity = {
       href: "mailto:rezalsamipro@gmail.com",
     },
     {
-      kind: "whatsapp",
+      kind: "phone",
       label: "+213 549 845 201",
-      href: "https://wa.me/213549845201",
+      href: "tel:+213549845201",
     },
   ],
 } as const;
