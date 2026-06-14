@@ -12,7 +12,7 @@ export function Timeline() {
     >
       <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
         <SectionHeading
-          number="03"
+          number="04"
           label="Experience & Education"
           title={
             <>

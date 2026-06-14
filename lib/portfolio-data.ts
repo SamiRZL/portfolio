@@ -64,7 +64,6 @@ export interface Project {
   readonly solution: string;
   readonly metrics: ReadonlyArray<{ readonly value: string; readonly label: string }>;
   readonly stack: ReadonlyArray<string>;
-  readonly liveUrl: string;
   readonly repoUrl: string;
 }
 
@@ -84,7 +83,7 @@ export const IDENTITY: Identity = {
   tagline:
     "Data analyst with a builder's instinct — turning raw data into decisions, dashboards, and direction.",
   summary:
-    "Data Analyst with a software engineering background and hands-on project experience in data collection, processing, analysis, and visualization using SQL, Python, Power BI, Tableau, and Excel. Skilled in data cleaning, modeling, dashboard development, and statistical analysis across relational and non-relational databases. Holds a Master's in Computer Science (NLP), comfortable delivering data solutions in Agile, cross-functional teams.",
+    "Data Analyst with a software engineering foundation, skilled at turning raw data into clear, actionable business insights using SQL, Python, Power BI, Tableau, and Excel. Hands-on experience in data cleaning, data modeling, ETL, dashboard development, and KPI reporting across finance, retail, and marketing projects. Comfortable working with relational and non-relational databases and translating business questions into data-driven answers. Holds a Master's in Computer Science (NLP), focused on supporting data-driven decision-making in Agile, cross-functional teams.",
   location: "Algiers — Algeria",
   email: "rezalsamipro@gmail.com",
   phone: "+213 549 845 201",
@@ -162,8 +161,10 @@ export const SKILL_GROUPS: ReadonlyArray<SkillGroup> = [
     tagline: "The plumbing under everything.",
     items: [
       "MySQL",
+      "PostgreSQL",
       "MongoDB",
       "Snowflake",
+      "DuckDB",
       "Git",
       "GitHub",
       "Postman",
@@ -191,6 +192,7 @@ export const EXPERIENCE: ReadonlyArray<Experience> = [
       "Engineered the Mobilis web application — enterprise-grade platform for one of Algeria's leading telecom operators, handling complex workflows and large-scale data.",
       "Built a charity management platform with structured data collection, processing, and reporting for non-profit operations.",
       "Shipped a fabrication management system that digitised industrial production workflows and operational data tracking.",
+      "Developed reporting features and operational dashboards that reduced manual data tracking by 20% and saved ~5 hours per week.",
       "Maintained code quality, documentation, and delivery timelines across simultaneous projects with a remote cross-functional team.",
     ],
     stack: [
@@ -215,7 +217,7 @@ export const EXPERIENCE: ReadonlyArray<Experience> = [
       "Designed and maintained data-driven software systems contributing to scalable, reliable architecture.",
       "Built and optimised data pipelines and APIs for consistent, accurate, high-performance data flow across services.",
       "Defined data requirements and modelled system behaviour with cross-functional teams.",
-      "Managed and queried databases to support application logic and reporting, with attention to integrity and performance.",
+      "Managed and queried databases to support application logic and reporting, improving data retrieval efficiency by 10%.",
     ],
     stack: ["Python", "SQL", "REST APIs", "Git", "Agile / Scrum"],
   },
@@ -270,72 +272,52 @@ export const EDUCATION: ReadonlyArray<Education> = [
 
 export const PROJECTS: ReadonlyArray<Project> = [
   {
-    id: "sales",
-    title: "Sales Data Analysis",
-    headline: "Revenue clarity, one dashboard.",
+    id: "finance",
+    title: "Finance Analytics Dashboard",
+    headline: "P&L clarity across two countries, seven stores.",
     problem:
-      "Revenue teams lacked a single source of truth to spot underperforming products and regions in real time, slowing weekly planning.",
+      "NRG's general-ledger reporting was fragmented and backward-looking — ~20,000 transactions across 7 stores and 2 channels in Norway and Sweden with no consolidated P&L, and a sign-convention defect was inflating operating margin to an implausible 399%.",
     solution:
-      "Built an interactive Power BI dashboard with DAX measures that surfaces sales trends, KPI variance, and product/region drill-downs at a glance.",
+      "Engineered a DuckDB medallion pipeline (bronze/silver/gold) feeding a Power BI model with a full P&L matrix, channel/store profitability KPIs, and Actual vs Best/Worst-case scenario analysis — diagnosing and fixing the sign-convention bug to restore accurate margins.",
     metrics: [
-      { value: "12+", label: "KPIs surfaced" },
-      { value: "5", label: "Regional cuts" },
-      { value: "Daily", label: "Refresh cadence" },
+      { value: "20K+", label: "GL transactions" },
+      { value: "7 / 2", label: "Stores / channels" },
+      { value: "399%", label: "Margin bug fixed" },
     ],
-    stack: ["Power BI", "DAX", "Power Query", "Excel"],
-    liveUrl: "https://example.com/sales-dashboard",
-    repoUrl: "https://github.com/your-handle/sales-data-analysis",
+    stack: ["Power BI", "DuckDB", "Python", "SQL", "DAX"],
+    repoUrl: "https://github.com/SamiRZL/finance_analysis",
   },
   {
-    id: "insurance",
-    title: "Insurance Data Analysis",
-    headline: "Reading risk from the claims log.",
+    id: "marketing",
+    title: "Marketing Analytics & Sentiment Analysis",
+    headline: "What 400 reviews actually say.",
     problem:
-      "Insurance teams struggled to identify risky claim patterns and the most profitable customer segments inside fragmented spreadsheets.",
+      "The marketing team could see conversion and rating numbers move, but had no way to read the sentiment behind ~400 customer reviews scattered across raw exports.",
     solution:
-      "Modeled claims and customer data in Power BI with DAX so analysts can isolate claim frequency, risk drivers, and profitability bands in seconds.",
+      "Built SQL fact/dimension tables for reviews, engagement, and customer journeys, scored review text with NLTK VADER sentiment in Python, and visualised conversion swings and rating trends in Power BI.",
     metrics: [
-      { value: "3", label: "Risk segments" },
-      { value: "8", label: "DAX measures" },
-      { value: "100K+", label: "Claims modeled" },
+      { value: "400", label: "Reviews scored" },
+      { value: "275 / 82", label: "Positive / negative" },
+      { value: "4.3%→18.5%", label: "Conversion range" },
     ],
-    stack: ["Power BI", "DAX", "Power Query"],
-    liveUrl: "https://example.com/insurance-dashboard",
-    repoUrl: "https://github.com/your-handle/insurance-data-analysis",
+    stack: ["SQL", "Python", "NLTK", "Power BI"],
+    repoUrl: "https://github.com/SamiRZL/marketing_analysis",
   },
   {
-    id: "upi",
-    title: "UPI Transactions Analysis",
-    headline: "Volume tells half the story.",
+    id: "retail",
+    title: "Customer Shopping Behavior Analysis",
+    headline: "3,900 shoppers, segmented.",
     problem:
-      "Digital-payment operators needed to read transaction behaviour across merchants and regions — not just total volume.",
+      "A retailer had 3,900 transactions across 18 behavioural and demographic features but no view of which customer segments and categories actually drove revenue.",
     solution:
-      "Built Power BI reports that decompose transaction volume, growth, and merchant-level performance into a single navigable view.",
+      "Cleaned and feature-engineered the dataset in pandas, loaded it into PostgreSQL to segment customers into Loyal/Returning/New cohorts, and built a Power BI dashboard surfacing category performance and basket size.",
     metrics: [
-      { value: "1M+", label: "Transactions parsed" },
-      { value: "4", label: "Drill paths" },
-      { value: "10+", label: "Merchant cohorts" },
+      { value: "3,900", label: "Transactions" },
+      { value: "3,116 / 701 / 83", label: "Loyal / Returning / New" },
+      { value: "$170K", label: "Non-subscriber revenue" },
     ],
-    stack: ["Power BI", "DAX", "SQL"],
-    liveUrl: "https://example.com/upi-dashboard",
-    repoUrl: "https://github.com/your-handle/upi-transactions",
-  },
-  {
-    id: "student-depression",
-    title: "Student Depression Analysis",
-    headline: "Survey data that finally talks.",
-    problem:
-      "Mental-health survey data was scattered and hard to interrogate for demographic patterns that policy teams care about.",
-    solution:
-      "Cleaned and reshaped the dataset with SQL, then visualised lifestyle and demographic correlations in Tableau so non-technical stakeholders can read the signal.",
-    metrics: [
-      { value: "27", label: "Variables cleaned" },
-      { value: "6", label: "Dashboards" },
-      { value: "SQL→Tableau", label: "Pipeline" },
-    ],
-    stack: ["SQL", "Tableau", "EDA"],
-    liveUrl: "https://example.com/student-depression",
-    repoUrl: "https://github.com/your-handle/student-depression-analysis",
+    stack: ["Python", "pandas", "PostgreSQL", "Power BI"],
+    repoUrl: "https://github.com/SamiRZL/customer_behavior_analysis",
   },
 ] as const;
 
@@ -356,8 +338,8 @@ export const LANGUAGES: ReadonlyArray<Language> = [
 export const SECTIONS = [
   { id: "top", number: "01", label: "Intro" },
   { id: "skills", number: "02", label: "Skills" },
-  { id: "experience", number: "03", label: "Experience" },
-  { id: "projects", number: "04", label: "Projects" },
+  { id: "projects", number: "03", label: "Projects" },
+  { id: "experience", number: "04", label: "Experience" },
   { id: "contact", number: "05", label: "Contact" },
 ] as const;
 

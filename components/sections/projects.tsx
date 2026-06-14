@@ -1,4 +1,4 @@
-import { ArrowUpRight, Code2 } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,11 +14,11 @@ export function Projects() {
       className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24 md:px-10 md:py-32"
     >
       <SectionHeading
-        number="04"
+        number="03"
         label="Selected Work"
         title={
           <>
-            Four case studies,{" "}
+            Three case studies,{" "}
             <em className="font-display italic text-clay">one question each.</em>
           </>
         }
@@ -100,21 +100,6 @@ export function Projects() {
               {/* Actions — pinned to bottom */}
               <div className="mt-auto flex flex-wrap gap-2 border-t border-border/70 pt-4">
                 <Button asChild size="default" className="rounded-full">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View live dashboard
-                    <ArrowUpRight />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="default"
-                  className="rounded-full"
-                >
                   <a
                     href={project.repoUrl}
                     target="_blank"

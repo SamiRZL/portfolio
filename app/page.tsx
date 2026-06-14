@@ -14,8 +14,8 @@ export default function Home() {
       <NavBar />
       <Hero />
       <Skills />
-      <Timeline />
       <Projects />
+      <Timeline />
       <Contact />
       <Footer />
     </main>
